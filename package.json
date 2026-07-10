@@ -1,0 +1,24 @@
+{
+  "name": "tree-sitter-galley",
+  "version": "0.1.0",
+  "description": "Tree-sitter grammar for Galley .grm parser definition files",
+  "repository": "github:sanbus-org/tree-sitter-galley",
+  "license": "MIT",
+  "keywords": [
+    "tree-sitter",
+    "galley",
+    "parser",
+    "grammar"
+  ],
+  "tree-sitter": [
+    {
+      "scope": "source.grm",
+      "file-types": [
+        "grm"
+      ],
+      "highlights": "queries/galley/highlights.scm",
+      "tags": "queries/galley/tags.scm",
+      "indents": "queries/galley/indents.scm"
+    }
+  ]
+}

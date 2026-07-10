@@ -1,0 +1,142 @@
+==================
+Simple JSON rule
+==================
+
+Value
+| "{" OptionalBlank ObjectMembers OptionalBlank
+| "null" OptionalBlank
+
+
+---
+
+(source_file
+  (rule
+    name: (variable_symbol)
+    alternative: (alternative
+      (rhs
+        symbol: (symbol_with_procedure
+          (double_quoted_terminal))
+        symbol: (symbol_with_procedure
+          (variable_symbol))
+        symbol: (symbol_with_procedure
+          (variable_symbol))
+        symbol: (symbol_with_procedure
+          (variable_symbol))))
+    alternative: (alternative
+      (rhs
+        symbol: (symbol_with_procedure
+          (double_quoted_terminal))
+        symbol: (symbol_with_procedure
+          (variable_symbol))))))
+
+==================
+Epsilon production
+==================
+
+OptionalBlank
+| space _OptionalBlankTail
+|
+
+
+---
+
+(source_file
+  (rule
+    name: (variable_symbol)
+    alternative: (alternative
+      (rhs
+        symbol: (symbol_with_procedure
+          (generative_terminal
+            name: (generative_name)))
+        symbol: (symbol_with_procedure
+          (variable_symbol))))
+    alternative: (alternative)))
+
+==================
+Procedure hooks
+==================
+
+FloatTail@dropSelf
+|@dropSelf "." digit _PositiveIntegerNumberTail
+|
+
+
+---
+
+(source_file
+  (rule
+    name: (variable_symbol)
+    procedure: (procedure_tail
+      name: (procedure_name))
+    alternative: (alternative
+      procedure: (procedure_tail
+        name: (procedure_name))
+      (rhs
+        symbol: (symbol_with_procedure
+          (double_quoted_terminal))
+        symbol: (symbol_with_procedure
+          (generative_terminal
+            name: (generative_name)))
+        symbol: (symbol_with_procedure
+          (variable_symbol))))
+    alternative: (alternative)))
+
+==================
+Generative exceptions
+==================
+
+_StringContent
+| character^'" _StringContent
+|
+
+
+---
+
+(source_file
+  (rule
+    name: (variable_symbol)
+    alternative: (alternative
+      (rhs
+        symbol: (symbol_with_procedure
+          (generative_terminal
+            name: (generative_name)
+            (exception
+              (terminal
+                (single_quoted_terminal)))))
+        symbol: (symbol_with_procedure
+          (variable_symbol))))
+    alternative: (alternative)))
+
+==================
+Inter-rule comments
+==================
+
+Start
+| Rules
+
+# Entry point for the grammar parser.
+
+Rules
+| Rule RulesTail
+|
+
+
+---
+
+(source_file
+  (rule
+    name: (variable_symbol)
+    alternative: (alternative
+      (rhs
+        symbol: (symbol_with_procedure
+          (variable_symbol))))
+    (comment))
+  (rule
+    name: (variable_symbol)
+    alternative: (alternative
+      (rhs
+        symbol: (symbol_with_procedure
+          (variable_symbol))
+        symbol: (symbol_with_procedure
+          (variable_symbol))))
+    alternative: (alternative)))

@@ -1,0 +1,332 @@
+[
+  {
+    "type": "alternative",
+    "named": true,
+    "fields": {
+      "procedure": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "procedure_tail",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "rhs",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "comment",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "double_quoted_terminal",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "exception",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "terminal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "generative_name",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "generative_terminal",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "generative_name",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "exception",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "procedure_tail",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "procedure_name",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "rhs",
+    "named": true,
+    "fields": {
+      "symbol": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "symbol_with_procedure",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "rule",
+    "named": true,
+    "fields": {
+      "alternative": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "alternative",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "variable_symbol",
+            "named": true
+          }
+        ]
+      },
+      "procedure": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "procedure_tail",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "single_quoted_terminal",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "source_file",
+    "named": true,
+    "root": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "rule",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "symbol_with_procedure",
+    "named": true,
+    "fields": {
+      "procedure": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "procedure_tail",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "double_quoted_terminal",
+          "named": true
+        },
+        {
+          "type": "generative_terminal",
+          "named": true
+        },
+        {
+          "type": "single_quoted_terminal",
+          "named": true
+        },
+        {
+          "type": "variable_symbol",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "terminal",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "double_quoted_terminal",
+          "named": true
+        },
+        {
+          "type": "single_quoted_terminal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "\u0003",
+    "named": false
+  },
+  {
+    "type": "\n",
+    "named": false
+  },
+  {
+    "type": "\"",
+    "named": false
+  },
+  {
+    "type": "#",
+    "named": false
+  },
+  {
+    "type": "'",
+    "named": false
+  },
+  {
+    "type": "@",
+    "named": false
+  },
+  {
+    "type": "^",
+    "named": false
+  },
+  {
+    "type": "block_end",
+    "named": false
+  },
+  {
+    "type": "block_start",
+    "named": false
+  },
+  {
+    "type": "character",
+    "named": false
+  },
+  {
+    "type": "digit",
+    "named": false
+  },
+  {
+    "type": "letter",
+    "named": false
+  },
+  {
+    "type": "lowercase_letter",
+    "named": false
+  },
+  {
+    "type": "new_line",
+    "named": false
+  },
+  {
+    "type": "operator",
+    "named": false
+  },
+  {
+    "type": "procedure_name",
+    "named": true
+  },
+  {
+    "type": "punctuation",
+    "named": false
+  },
+  {
+    "type": "space",
+    "named": false
+  },
+  {
+    "type": "uppercase_letter",
+    "named": false
+  },
+  {
+    "type": "variable_symbol",
+    "named": true
+  },
+  {
+    "type": "whitespace",
+    "named": false
+  },
+  {
+    "type": "|",
+    "named": false
+  }
+]

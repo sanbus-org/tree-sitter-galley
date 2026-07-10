@@ -1,0 +1,18 @@
+{
+  "grammars": [
+    {
+      "name": "galley",
+      "scope": "source.grm",
+      "path": ".",
+      "file-types": [
+        "grm"
+      ],
+      "highlights": "queries/galley/highlights.scm",
+      "tags": "queries/galley/tags.scm",
+      "indents": "queries/galley/indents.scm"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0"
+  }
+}
