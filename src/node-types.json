@@ -12,6 +12,16 @@
             "named": true
           }
         ]
+      },
+      "recovery": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "recovery",
+            "named": true
+          }
+        ]
       }
     },
     "children": {
@@ -98,6 +108,48 @@
     }
   },
   {
+    "type": "recovery",
+    "named": true,
+    "fields": {
+      "point": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "recovery_point",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "recovery_point",
+    "named": true,
+    "fields": {
+      "terminal": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "terminal",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "verbatim_marker",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "rhs",
     "named": true,
     "fields": {
@@ -146,6 +198,16 @@
             "named": true
           }
         ]
+      },
+      "recovery": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "recovery",
+            "named": true
+          }
+        ]
       }
     },
     "children": {
@@ -158,11 +220,6 @@
         }
       ]
     }
-  },
-  {
-    "type": "single_quoted_terminal",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "source_file",
@@ -197,6 +254,16 @@
             "named": true
           }
         ]
+      },
+      "recovery": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "recovery",
+            "named": true
+          }
+        ]
       }
     },
     "children": {
@@ -212,7 +279,7 @@
           "named": true
         },
         {
-          "type": "single_quoted_terminal",
+          "type": "raw_quote_terminal",
           "named": true
         },
         {
@@ -235,18 +302,34 @@
           "named": true
         },
         {
-          "type": "single_quoted_terminal",
+          "type": "raw_quote_terminal",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "\u0003",
-    "named": false
+    "type": "verbatim_marker",
+    "named": true,
+    "fields": {
+      "terminal": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "terminal",
+            "named": true
+          }
+        ]
+      }
+    }
   },
   {
     "type": "\n",
+    "named": false
+  },
+  {
+    "type": "!",
     "named": false
   },
   {
@@ -258,7 +341,11 @@
     "named": false
   },
   {
-    "type": "'",
+    "type": ">",
+    "named": false
+  },
+  {
+    "type": ">>",
     "named": false
   },
   {
@@ -286,6 +373,10 @@
     "named": false
   },
   {
+    "type": "hex_digit",
+    "named": false
+  },
+  {
     "type": "letter",
     "named": false
   },
@@ -310,11 +401,47 @@
     "named": false
   },
   {
+    "type": "raw_quote_terminal",
+    "named": true
+  },
+  {
     "type": "space",
     "named": false
   },
   {
     "type": "uppercase_letter",
+    "named": false
+  },
+  {
+    "type": "utf8_continuation",
+    "named": false
+  },
+  {
+    "type": "utf8_continuation_80_8f",
+    "named": false
+  },
+  {
+    "type": "utf8_continuation_80_9f",
+    "named": false
+  },
+  {
+    "type": "utf8_continuation_90_bf",
+    "named": false
+  },
+  {
+    "type": "utf8_continuation_a0_bf",
+    "named": false
+  },
+  {
+    "type": "utf8_lead_four_general",
+    "named": false
+  },
+  {
+    "type": "utf8_lead_three_general",
+    "named": false
+  },
+  {
+    "type": "utf8_lead_two",
     "named": false
   },
   {

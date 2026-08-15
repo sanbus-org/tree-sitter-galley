@@ -14,6 +14,7 @@ module.exports = grammar({
 
     rule: $ => seq(
       field('name', $.variable_symbol),
+      repeat(field('recovery', $.recovery)),
       optional(field('procedure', $.procedure_tail)),
       '\n',
       repeat1(choice(
@@ -25,6 +26,7 @@ module.exports = grammar({
 
     alternative: $ => seq(
       '|',
+      repeat(field('recovery', $.recovery)),
       optional(field('procedure', $.procedure_tail)),
       optional($.rhs),
       '\n',
@@ -34,13 +36,14 @@ module.exports = grammar({
 
     symbol_with_procedure: $ => seq(
       $.symbol,
+      repeat(field('recovery', $.recovery)),
       optional(field('procedure', $.procedure_tail)),
     ),
 
     symbol: $ => choice(
       $.variable_symbol,
       $.double_quoted_terminal,
-      $.single_quoted_terminal,
+      $.raw_quote_terminal,
       $.generative_terminal,
     ),
 
@@ -53,9 +56,30 @@ module.exports = grammar({
 
     procedure_name: $ => /[a-z][a-zA-Z0-9_]*/,
 
+    recovery: $ => seq(
+      '!',
+      field('point', $.recovery_point),
+    ),
+
+    recovery_point: $ => choice(
+      seq('^', field('terminal', $.terminal)),
+      prec(1, seq(field('terminal', $.terminal), '^')),
+      $.verbatim_marker,
+    ),
+
+    verbatim_marker: $ => choice(
+      '>>',
+      seq('>', choice(
+        seq('^', field('terminal', $.terminal)),
+        prec(1, seq(field('terminal', $.terminal), '^')),
+        field('terminal', $.terminal),
+      )),
+    ),
+
     double_quoted_terminal: $ => seq(
       '"',
       repeat(choice(
+        /\\u\{[0-9a-fA-F]+\}/,
         /\\x[0-9a-fA-F]+/,
         /\\./,
         /[^"\\]/,
@@ -63,11 +87,7 @@ module.exports = grammar({
       '"',
     ),
 
-    single_quoted_terminal: $ => seq(
-      "'",
-      repeat(/[^\x03]/),
-      '\x03',
-    ),
+    raw_quote_terminal: $ => /\\"~[^~\n]*~"/,
 
     generative_terminal: $ => seq(
       field('name', $.generative_name),
@@ -85,12 +105,21 @@ module.exports = grammar({
       'operator',
       'new_line',
       'digit',
+      'hex_digit',
       'letter',
       'space',
+      'utf8_lead_two',
+      'utf8_lead_three_general',
+      'utf8_lead_four_general',
+      'utf8_continuation',
+      'utf8_continuation_80_8f',
+      'utf8_continuation_80_9f',
+      'utf8_continuation_90_bf',
+      'utf8_continuation_a0_bf',
     ),
 
     exception: $ => seq('^', $.terminal),
 
-    terminal: $ => choice($.double_quoted_terminal, $.single_quoted_terminal),
+    terminal: $ => choice($.double_quoted_terminal, $.raw_quote_terminal),
   },
 });

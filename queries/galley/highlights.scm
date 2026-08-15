@@ -15,7 +15,7 @@
   "^" @operator)
 
 (double_quoted_terminal) @string
-(single_quoted_terminal) @string.special
+(raw_quote_terminal) @string.special
 
 (generative_name) @constant.builtin
 
