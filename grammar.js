@@ -14,8 +14,7 @@ module.exports = grammar({
 
     rule: $ => seq(
       field('name', $.variable_symbol),
-      repeat(field('recovery', $.recovery)),
-      optional(field('procedure', $.procedure_tail)),
+      repeat(field('annotation', $.annotation)),
       '\n',
       repeat1(choice(
         field('alternative', $.alternative),
@@ -26,8 +25,7 @@ module.exports = grammar({
 
     alternative: $ => seq(
       '|',
-      repeat(field('recovery', $.recovery)),
-      optional(field('procedure', $.procedure_tail)),
+      repeat(field('annotation', $.annotation)),
       optional($.rhs),
       '\n',
     ),
@@ -36,8 +34,7 @@ module.exports = grammar({
 
     symbol_with_procedure: $ => seq(
       $.symbol,
-      repeat(field('recovery', $.recovery)),
-      optional(field('procedure', $.procedure_tail)),
+      repeat(field('annotation', $.annotation)),
     ),
 
     symbol: $ => choice(
@@ -52,28 +49,27 @@ module.exports = grammar({
       /[A-Z][a-zA-Z0-9_]*/,
     )),
 
-    procedure_tail: $ => repeat1(seq('@', field('name', $.procedure_name))),
-
     procedure_name: $ => /[a-z][a-zA-Z0-9_]*/,
 
-    recovery: $ => seq(
-      '!',
-      field('point', $.recovery_point),
+    annotation: $ => seq(
+      '@',
+      choice(
+        field('procedure', $.procedure_name),
+        seq('!', field('point', $.recovery_point)),
+        seq('>', field('marker', $.verbatim_marker)),
+      ),
     ),
 
     recovery_point: $ => choice(
       seq('^', field('terminal', $.terminal)),
       prec(1, seq(field('terminal', $.terminal), '^')),
-      $.verbatim_marker,
     ),
 
     verbatim_marker: $ => choice(
-      '>>',
-      seq('>', choice(
-        seq('^', field('terminal', $.terminal)),
-        prec(1, seq(field('terminal', $.terminal), '^')),
-        field('terminal', $.terminal),
-      )),
+      '>',
+      seq('^', field('terminal', $.terminal)),
+      prec(1, seq(field('terminal', $.terminal), '^')),
+      field('terminal', $.terminal),
     ),
 
     double_quoted_terminal: $ => seq(

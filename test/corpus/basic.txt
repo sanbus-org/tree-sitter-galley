@@ -66,11 +66,11 @@ FloatTail@dropSelf
 (source_file
   (rule
     name: (variable_symbol)
-    procedure: (procedure_tail
-      name: (procedure_name))
+    annotation: (annotation
+      procedure: (procedure_name))
     alternative: (alternative
-      procedure: (procedure_tail
-        name: (procedure_name))
+      annotation: (annotation
+        procedure: (procedure_name))
       (rhs
         symbol: (symbol_with_procedure
           (double_quoted_terminal))
@@ -131,9 +131,9 @@ Verbatim markers
 ==================
 
 Line
-| "#"!>^"\n" new_line
-| "%%"!>> new_line
-| "{{{" UpperPair!>"/>"^ LowerTail
+| "#"@>^"\n" new_line
+| "%%"@>> new_line
+| "{{{" UpperPair@>"/>"^ LowerTail
 
 ---
 
@@ -145,11 +145,10 @@ Line
       (rhs
         symbol: (symbol_with_procedure
           (double_quoted_terminal)
-          recovery: (recovery
-            point: (recovery_point
-              (verbatim_marker
-                terminal: (terminal
-                  (double_quoted_terminal))))))
+          annotation: (annotation
+            marker: (verbatim_marker
+              terminal: (terminal
+                (double_quoted_terminal)))))
         symbol: (symbol_with_procedure
           (generative_terminal
             name: (generative_name)))))
@@ -157,9 +156,8 @@ Line
       (rhs
         symbol: (symbol_with_procedure
           (double_quoted_terminal)
-          recovery: (recovery
-            point: (recovery_point
-              (verbatim_marker))))
+          annotation: (annotation
+            marker: (verbatim_marker)))
         symbol: (symbol_with_procedure
           (generative_terminal
             name: (generative_name)))))
@@ -169,11 +167,10 @@ Line
           (double_quoted_terminal))
         symbol: (symbol_with_procedure
           (variable_symbol)
-          recovery: (recovery
-            point: (recovery_point
-              (verbatim_marker
-                terminal: (terminal
-                  (double_quoted_terminal))))))
+          annotation: (annotation
+            marker: (verbatim_marker
+              terminal: (terminal
+                (double_quoted_terminal)))))
         symbol: (symbol_with_procedure
           (variable_symbol))))))
  

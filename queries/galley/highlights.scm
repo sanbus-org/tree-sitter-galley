@@ -7,10 +7,6 @@
 (alternative
   "|" @operator)
 
-(procedure_tail
-  "@" @attribute
-  (procedure_name) @function)
-
 (exception
   "^" @operator)
 
@@ -20,3 +16,18 @@
 (generative_name) @constant.builtin
 
 (comment) @comment
+
+(annotation) @comment (#set! "italic") (#set! priority 110)
+
+(annotation
+  (recovery_point
+    (terminal
+      (_) @comment))) (#set! "italic") (#set! priority 110)
+
+(annotation
+  (verbatim_marker
+    (terminal
+      (_) @comment))) (#set! "italic") (#set! priority 110)
+
+(annotation
+  "@" @keyword) (#set! "italic") (#set! priority 111)

@@ -3,22 +3,12 @@
     "type": "alternative",
     "named": true,
     "fields": {
-      "procedure": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "procedure_tail",
-            "named": true
-          }
-        ]
-      },
-      "recovery": {
+      "annotation": {
         "multiple": true,
         "required": false,
         "types": [
           {
-            "type": "recovery",
+            "type": "annotation",
             "named": true
           }
         ]
@@ -33,6 +23,42 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "annotation",
+    "named": true,
+    "fields": {
+      "marker": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "verbatim_marker",
+            "named": true
+          }
+        ]
+      },
+      "point": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "recovery_point",
+            "named": true
+          }
+        ]
+      },
+      "procedure": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "procedure_name",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -92,44 +118,12 @@
     }
   },
   {
-    "type": "procedure_tail",
-    "named": true,
-    "fields": {
-      "name": {
-        "multiple": true,
-        "required": true,
-        "types": [
-          {
-            "type": "procedure_name",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "recovery",
-    "named": true,
-    "fields": {
-      "point": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "recovery_point",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
     "type": "recovery_point",
     "named": true,
     "fields": {
       "terminal": {
         "multiple": false,
-        "required": false,
+        "required": true,
         "types": [
           {
             "type": "terminal",
@@ -137,16 +131,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "verbatim_marker",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -179,32 +163,22 @@
           }
         ]
       },
+      "annotation": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "annotation",
+            "named": true
+          }
+        ]
+      },
       "name": {
         "multiple": false,
         "required": true,
         "types": [
           {
             "type": "variable_symbol",
-            "named": true
-          }
-        ]
-      },
-      "procedure": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "procedure_tail",
-            "named": true
-          }
-        ]
-      },
-      "recovery": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "recovery",
             "named": true
           }
         ]
@@ -245,22 +219,12 @@
     "type": "symbol_with_procedure",
     "named": true,
     "fields": {
-      "procedure": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "procedure_tail",
-            "named": true
-          }
-        ]
-      },
-      "recovery": {
+      "annotation": {
         "multiple": true,
         "required": false,
         "types": [
           {
-            "type": "recovery",
+            "type": "annotation",
             "named": true
           }
         ]
@@ -342,10 +306,6 @@
   },
   {
     "type": ">",
-    "named": false
-  },
-  {
-    "type": ">>",
     "named": false
   },
   {
