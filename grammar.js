@@ -49,7 +49,7 @@ module.exports = grammar({
       /[A-Z][a-zA-Z0-9_]*/,
     )),
 
-    procedure_name: $ => /[a-z][a-zA-Z0-9_]*/,
+    procedure_name: $ => /[a-z][a-zA-Z0-9]*/,
 
     annotation: $ => seq(
       '@',
@@ -69,7 +69,6 @@ module.exports = grammar({
       '>',
       seq('^', field('terminal', $.terminal)),
       prec(1, seq(field('terminal', $.terminal), '^')),
-      field('terminal', $.terminal),
     ),
 
     double_quoted_terminal: $ => seq(

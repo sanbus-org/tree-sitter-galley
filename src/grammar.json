@@ -193,7 +193,7 @@
     },
     "procedure_name": {
       "type": "PATTERN",
-      "value": "[a-z][a-zA-Z0-9_]*"
+      "value": "[a-z][a-zA-Z0-9]*"
     },
     "annotation": {
       "type": "SEQ",
@@ -337,14 +337,6 @@
                 "value": "^"
               }
             ]
-          }
-        },
-        {
-          "type": "FIELD",
-          "name": "terminal",
-          "content": {
-            "type": "SYMBOL",
-            "name": "terminal"
           }
         }
       ]
