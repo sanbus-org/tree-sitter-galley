@@ -7,13 +7,23 @@
 (alternative
   "|" @operator)
 
-(exception
-  "^" @operator)
-
 (double_quoted_terminal) @string
 (raw_quote_terminal) @string.special
 
 (generative_name) @constant.builtin
+
+; Generative suffix exceptions: "^" + terminal after generative (e.g. character^"\u{22}"^"\n"^"\\")
+; Like hooks: marker (^) distinct from content — @keyword (purple) + @comment (dark gray italic)
+(exception
+  "^" @keyword (#set! "italic") (#set! priority 125))
+
+(exception
+  (terminal
+    (double_quoted_terminal) @comment (#set! "italic") (#set! priority 125)))
+
+(exception
+  (terminal
+    (raw_quote_terminal) @comment (#set! "italic") (#set! priority 125)))
 
 (comment) @comment
 
